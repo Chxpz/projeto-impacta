@@ -13,13 +13,12 @@ contract DigitalBroker is AccessControlUpgradeable{
 
     //keeps track of client account balance in eth
     mapping(address => uint) public clientAccountBalance;
-    mapping(address => uint) public clientDepositNumber;
+    
     //client address token address balance
     mapping(address => mapping( address => uint)) public clientAccountBalanceToken;
 
     receive() external payable{
-       clientAccountBalance[msg.sender] +=  msg.value;
-       clientAccountBalance[msg.sender] +=  1;
+       clientAccountBalance[msg.sender] +=  msg.value;    
     }
 
     function withDrawnEth(uint amount) external payable onlyRole(DIGITAL_BROKER_CLIENT){
